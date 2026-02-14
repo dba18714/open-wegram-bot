@@ -87,6 +87,11 @@ export async function handleWebhook(request, ownerUid, botToken, secretToken) {
     const message = update.message;
     const reply = message.reply_to_message;
     try {
+        // 随机抛出异常
+        if (Math.random() < 0.5) {
+            throw new Error('Random error for testing');
+        }
+
         if (reply && message.chat.id.toString() === ownerUid) {
             const rm = reply.reply_markup;
             if (rm && rm.inline_keyboard && rm.inline_keyboard.length > 0) {
